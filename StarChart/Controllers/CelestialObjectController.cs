@@ -20,10 +20,10 @@ namespace StarChart.Controllers
             _context = context;
         }
 
-        [HttpGet]("{id:int}")
+        //[HttpGet]("{id:int}")
         public IActionResult GetById(int id)
         {
-
+            return null;
         }
 
     }
