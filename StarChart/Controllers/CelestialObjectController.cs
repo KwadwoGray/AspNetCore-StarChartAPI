@@ -20,10 +20,19 @@ namespace StarChart.Controllers
             _context = context;
         }
 
-        //[HttpGet]("{id:int}")
+        [HttpGet("{id:int}", Name = "GetById")]
         public IActionResult GetById(int id)
         {
-            return null;
+            var celestialObject = _context.CelestialObjects.Find(id);
+            if(celestialObject == null)
+            {
+                return NotFound();
+            } else
+            {
+                celestialObject.Satellites = _context.CelestialObjects.Where(e => e.OrbitedObjectId == id).ToList();
+                return Ok(celestialObject);
+            }
+           
         }
 
     }
