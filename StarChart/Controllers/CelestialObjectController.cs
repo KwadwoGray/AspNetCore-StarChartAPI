@@ -65,7 +65,7 @@ namespace StarChart.Controllers
             return Ok(celestialObjects);
         }
 
-        [HttpPut("{id}")]
+        [HttpPost]
         public IActionResult Create([FromBody]CelestialObject celestialObject)
         {
             _context.CelestialObjects.Add(celestialObject);
@@ -74,7 +74,7 @@ namespace StarChart.Controllers
             return CreatedAtRoute("GetById", new { id = celestialObject.Id}, celestialObject);
         }
 
-        [HttpPatch("{id}/{name}")]
+        [HttpPut("{id}")]
         public IActionResult Update(int id, CelestialObject providedCelestialObject)
         {
             var celestialObject = _context.CelestialObjects.Find(id);
@@ -92,6 +92,12 @@ namespace StarChart.Controllers
             }
 
             return NoContent();
+        }
+
+        [HttpPatch("{id}/{name}")]
+        public IActionResult RenameObject()
+        {
+            return null;
         }
 
     }
