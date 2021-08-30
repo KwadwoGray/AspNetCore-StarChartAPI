@@ -116,7 +116,7 @@ namespace StarChart.Controllers
         public IActionResult Delete(int id)
         {
             List<CelestialObject> celestialObjects = _context.CelestialObjects.Where(e => e.OrbitedObjectId == id || e.Id == id).ToList();
-            if (celestialObjects == null)
+            if (!celestialObjects.Any())
             {
                 return NotFound();
             } else
